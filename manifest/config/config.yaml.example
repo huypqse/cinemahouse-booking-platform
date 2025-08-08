@@ -1,7 +1,7 @@
 server:
   address:     ":8000"
-  openapiPath: "/backend/cs-agent/v1/api.json"
-  swaggerPath: "/backend/cs-agent/v1/swagger"
+  openapiPath: "/backend/cinemahouse/v1/api.json"
+  swaggerPath: "/backend/cinemahouse/v1/swagger"
   dumpRouterMap: false
   errorStack: false 
   errorLogEnabled: false 
@@ -32,7 +32,7 @@ database:
     level: "all"
     stdout: true
   default:
-    link: "mysql:root:12345678@tcp(127.0.0.1:3306)/customer_service"
+    link: "mysql:root:12345@tcp(127.0.0.1:3306)/cinemahouse"
     debug: true
     maxIdle: "10"
     maxOpen: "10"

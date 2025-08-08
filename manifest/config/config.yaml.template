@@ -1,7 +1,7 @@
 server:
-  address:     ":${CS_AGENT_API_PORT}"
-  openapiPath: "${CS_AGENT_API_SWAGGER_PATH}/api.json"
-  swaggerPath: "${CS_AGENT_API_SWAGGER_PATH}/swagger"
+  address:     ":${CINEMAHOUSE_API_PORT}"
+  openapiPath: "${CINEMAHOUSE_API_SWAGGER_PATH}/api.json"
+  swaggerPath: "${CINEMAHOUSE_API_SWAGGER_PATH}/swagger"
   dumpRouterMap: false
   errorStack: false 
   errorLogEnabled: false
@@ -12,7 +12,7 @@ logger:
   path: "./log/"
   file: "{Y-m-d}.log"
   prefix: "" 
-  level: "${CS_AGENT_LOG_LEVEL}"
+  level: "${CINEMAHOUSE_AGENT_LOG_LEVEL}"
   timeFormat: "2006-01-02 15:04:05"
   ctxKeys: ["req","TraceId"]
   header: true              
@@ -31,11 +31,11 @@ logger:
 # Database.
 database:
   logger:
-    level: "${CS_AGENT_LOG_LEVEL}"
+    level: "${CINEMAHOUSE_AGENT_LOG_LEVEL}"
     stdout: true
   default:
-    link: "${CUSTOMER_SERVICE_DATABASE_LINK}"
-    debug: ${CS_AGENT_DATABASE_DEBUG}
+    link: "${CINEMAHOUSE_DATABASE_LINK}"
+    debug: ${CINEMAHOUSE_DATABASE_DEBUG}
     maxIdle: "10"
     maxOpen: "10"
     maxLifetime: "60s"
@@ -43,7 +43,7 @@ database:
 # Redis
 redis:
   default:
-    address: ${CUSTOMER_SERVICE_REDIS_ADDRESS}
+    address: ${CINEMAHOUSE_REDIS_ADDRESS}
     db: ${CUSTOMER_SERVICE_REDIS_DB}
     idleTimeout: "60s" 
     maxConnLifetime: "90s" 
@@ -51,8 +51,8 @@ redis:
     dialTimeout: "30s"
     readTimeout: "30s"
     writeTimeout: "30s"
-    maxActive: ${CS_REDIS_MAXACTIVE}
-    maxPoolSize: ${CS_REDIS_MAXACTIVE}
+    maxActive: ${CINEMAHOUSE_REDIS_MAXACTIVE}
+    maxPoolSize: ${CINEMAHOUSE_REDIS_MAXACTIVE}
     minIdleConns: 10
     maxRetries: 3
-    tls: ${CS_REDIS_ENABLE_TLS}
+    tls: ${CINEMAHOUSE_REDIS_ENABLE_TLS}
