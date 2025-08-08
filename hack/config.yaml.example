@@ -1,0 +1,9 @@
+# GoFrame CLI tool configuration.
+gfcli:
+  gen:
+    dao:
+      - link: "mysql:root:12345678@tcp(localhost:3306)/customer_service"
+        tables: "agent_seat"
+        removePrefix: "gf_"
+        descriptionTag: true
+        noModelComment: true
