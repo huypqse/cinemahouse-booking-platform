@@ -1,0 +1,59 @@
+
+server:
+  address:     ":${AUTH_API_PORT}"
+  openapiPath: "${AUTH_API_SWAGGER_PATH}/api.json"
+  swaggerPath: "${AUTH_API_SWAGGER_PATH}/swagger"
+  dumpRouterMap: false
+  errorStack: false 
+  errorLogEnabled: false
+  clientMaxBodySize: 104857600
+
+# Global logging.
+logger:
+  path: "./log/"
+  file: "{Y-m-d}.log"
+  prefix: "" 
+  level: "${AUTH_LOG_LEVEL}"
+  timeFormat: "2006-01-02 15:04:05"
+  ctxKeys: ["req","TraceId"]
+  header: true              
+  stSkip: 0
+  stdout: true
+  rotateSize: 0 
+  rotateExpire: 0            
+  rotateBackupLimit: 0                    
+  rotateBackupExpire: 0                     
+  rotateBackupCompress: 0                   
+  rotateCheckInterval: "1h"             
+  stdoutColorDisabled: false                
+  writerColorEnable: false                
+  flags: 92
+
+# Database.
+database:
+  logger:
+    level: "${AUTH_LOG_LEVEL}"
+    stdout: true
+  default:
+    link: "${CUSTOMER_SERVICE_DATABASE_LINK}"
+    debug: ${AUTH_DATABASE_DEBUG}
+    maxIdle: "10"
+    maxOpen: "10"
+    maxLifetime: "60s"
+
+# Redis
+redis:
+  default:
+    address: ${AUTH_SERVICE_REDIS_ADDRESS}
+    db: ${AUTH_SERVICE_REDIS_DB}
+    idleTimeout: "60s" 
+    maxConnLifetime: "90s" 
+    waitTimeout: "60s" 
+    dialTimeout: "30s"
+    readTimeout: "30s"
+    writeTimeout: "30s"
+    maxActive: ${AUTH_REDIS_MAXACTIVE}
+    maxPoolSize: ${AUTH_REDIS_MAXACTIVE}
+    minIdleConns: 10
+    maxRetries: 3
+    tls: ${AUTH_REDIS_ENABLE_TLS}
