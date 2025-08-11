@@ -1,0 +1,55 @@
+server:
+  address:     ":8000"
+  openapiPath: "/backend/cinemahouse/v1/api.json"
+  swaggerPath: "/backend/cinemahouse/v1/swagger"
+  dumpRouterMap: false
+  errorStack: false 
+  errorLogEnabled: false 
+  errorLogPattern: "error-{Ymd}.log" 
+
+logger:
+  path: "./log/"
+  file: "{Y-m-d}.log"
+  prefix: ""
+  level: "all"
+  timeFormat: "2006-01-02 15:04:05"
+  ctxKeys: ["req", "TraceId"]
+  header: true
+  stSkip: 0
+  stdout: true
+  rotateSize: 0
+  rotateExpire: 0
+  rotateBackupLimit: 0
+  rotateBackupExpire: 0
+  rotateBackupCompress: 0
+  rotateCheckInterval: "1h"
+  stdoutColorDisabled: false
+  writerColorEnable: false
+  flags: 92
+
+database:
+  logger:
+    level: "all"
+    stdout: true
+  default:
+    link: "mysql:root:v6mnecEeHk@tcp(127.0.0.1:3307)/cinemahouse?charset=utf8mb4"
+    debug: true
+    maxIdle: "10"
+    maxOpen: "10"
+    maxLifetime: "60s"
+
+
+redis:
+  default:
+    address: localhost:6379
+    db: 0
+    idleTimeout: "60s"
+    maxConnLifetime: "90s"
+    waitTimeout: "60s"
+    dialTimeout: "30s"
+    readTimeout: "30s"
+    writeTimeout: "30s"
+    maxActive: 100
+    maxPoolSize: 100
+    minIdleConns: 10
+    maxRetries: 3
