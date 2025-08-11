@@ -1,0 +1,59 @@
+      
+version: "3.1"
+
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    volumes:
+      - ./manifest/sql:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: auth
+    ports:
+      - "3308:3306"
+
+  redis-master:
+    image: "bitnami/redis:latest"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_REPLICATION_MODE=master
+    ports:
+      - "6379:6379"
+
+  redis-replica:
+    image: "bitnami/redis:latest"
+    ports:
+      - "6378:6378"
+    depends_on:
+      - redis-master
+    environment:
+      - REDIS_REPLICATION_MODE=slave
+      - REDIS_MASTER_HOST=redis-master
+      - REDIS_MASTER_PORT_NUMBER=6379
+      - ALLOW_EMPTY_PASSWORD=yes
+
+  minio:
+    image: minio/minio:latest
+    ports:
+      - "8002:8002"
+      - "8001:8001"
+    container_name: myminio
+    environment:
+      MINIO_ROOT_USER: user
+      MINIO_ROOT_PASSWORD: password
+    command: server /data --address ":8002" --console-address ":8001"
+    volumes:
+      - minio_data:/data
+
+
+
+volumes:
+  zookeeper_data:
+  kafka_data:
+  minio_data:
+
+networks:
+  esnet:
+
+    
