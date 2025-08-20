@@ -25,6 +25,7 @@ var (
 
 			s := g.Server()
 			s.Logger().SetHandlers(glog.HandlerJson)
+
 			s.Group("/", func(group *ghttp.RouterGroup) {
 				group.Middleware(ghttp.MiddlewareHandlerResponse)
 				group.Bind(
