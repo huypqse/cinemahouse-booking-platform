@@ -25,7 +25,40 @@ var (
 
 			s := g.Server()
 			s.Logger().SetHandlers(glog.HandlerJson)
+			//set up for prometheus
+			// metrics, err := metrics.NewMetrics("auth-svc")
+			// if err != nil {
+			// 	g.Log().Fatal(ctx, "init metrics error: %v", err)
+			// }
+			// metrics.SetSkipPath([]string{
+			// 	"/backend/auth/v1/swagger/api.json",
+			// })
 
+			// s.Use(service.Middleware().CompressMiddleware)
+
+			// s.Group("/metrics", func(group *ghttp.RouterGroup) {
+			// 	group.Middleware(
+			// 		service.Middleware().IPWhitelistMiddleware,
+			// 	)
+			// 	group.GET("/", func(r *ghttp.Request) {
+			// 		metrics.GfServeHandler(r)
+			// 	})
+			// })
+
+			// s.Use(
+			// 	metrics.GfMetricsHttpMiddleware(),
+			// 	service.Middleware().MiddlewareLog,
+			// 	service.Middleware().CORS,
+			// 	service.Middleware().SetStatusRes,
+			// 	ghttp.MiddlewareHandlerResponse,
+			// 	middleware.HiddenInternalErrResponse,
+			// )
+			s.BindHandler("/", func(r *ghttp.Request) {
+				r.Response.Writeln("ok")
+			})
+			s.BindHandler("/backend/auth/v1", func(r *ghttp.Request) {
+				r.Response.Writeln("ok")
+			})
 			s.Group("/", func(group *ghttp.RouterGroup) {
 				group.Middleware(ghttp.MiddlewareHandlerResponse)
 				group.Bind(
