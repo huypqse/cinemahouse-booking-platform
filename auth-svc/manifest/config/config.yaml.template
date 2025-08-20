@@ -57,3 +57,8 @@ redis:
     minIdleConns: 10
     maxRetries: 3
     tls: ${AUTH_REDIS_ENABLE_TLS}
+
+auth:
+  secretKey: ${AUTH_JWT_SECRET_KEY}
+  accessTokenExpireMinute: ${AUTH_ACCESS_TOKEN_EXPIRE_MINUTE}
+  refreshTokenExpireMinute: ${AUTH_REFRESH_TOKEN_EXPIRE_MINUTE}

@@ -53,3 +53,8 @@ redis:
     maxPoolSize: 100
     minIdleConns: 10
     maxRetries: 3
+
+auth:
+  secretKey: +hd>PywO8jrAnIewJvK7UbU1;*28m
+  accessTokenExpireMinute: 60
+  refreshTokenExpireMinute: 1440

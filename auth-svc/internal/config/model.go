@@ -5,6 +5,7 @@ type Config struct {
 	Logger   LoggerConfig   `yaml:"logger"`
 	Database DatabaseConfig `yaml:"database"`
 	Redis    RedisConfig    `yaml:"redis"`
+	Auth     AuthConfig     `yaml:"auth"`
 }
 
 type LoggerConfig struct {
@@ -65,4 +66,10 @@ type RedisConfig struct {
 		MinIdleConns    int    `yaml:"minIdleConns"`
 		MaxRetries      int    `yaml:"maxRetries"`
 	} `yaml:"default"`
+}
+
+type AuthConfig struct {
+	SecretKey                string `yaml:"secretKey"`
+	AccessTokenExpireMinute  int    `yaml:"accessTokenExpireMinute"`
+	RefreshTokenExpireMinute int    `yaml:"refreshTokenExpireMinute"`
 }
