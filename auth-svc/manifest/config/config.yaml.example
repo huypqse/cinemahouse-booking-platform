@@ -1,5 +1,5 @@
 server:
-  address:     ":8000"
+  address:     ":8001"
   openapiPath: "/backend/auth/v1/api.json"
   swaggerPath: "/backend/auth/v1/swagger"
   dumpRouterMap: false
@@ -32,7 +32,7 @@ database:
     level: "all"
     stdout: true
   default:
-    link: "mysql:root:v6mnecEeHk@tcp(127.0.0.1:3308)/auth?charset=utf8mb4"
+    link: "mysql:root:12345678@tcp(127.0.0.1:3306)/auth_db?charset=utf8mb4"
     debug: true
     maxIdle: "10"
     maxOpen: "10"
