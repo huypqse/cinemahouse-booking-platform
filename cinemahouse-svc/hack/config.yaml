@@ -1,13 +1,9 @@
-
-# CLI tool, only in development environment.
-# https://goframe.org/docs/cli
+# GoFrame CLI tool configuration.
 gfcli:
   gen:
     dao:
-      - link: "mysql:root:12345678@tcp(127.0.0.1:3306)/test"
+      - link: "mysql:root:12345678@tcp(localhost:3306)/cinemahouse_db"
+        tables: "room_type,seat_type,movie_type,ticket_price,cinema,movie,payment,screening_room,screening_session,seat,bill,ticket,movie_typeofmovies"
+        removePrefix: "gf_"
         descriptionTag: true
-
-  docker:
-    build: "-a amd64 -s linux -p temp -ew"
-    tagPrefixes:
-      - my.image.pub/my-app
+        noModelComment: true
