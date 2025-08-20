@@ -10,19 +10,14 @@ import (
 	"auth-svc/api/auth/auth"
 )
 
-type IAuthV1 interface {
-	// Token validation and middleware
-	ValidateToken(ctx context.Context, req *auth.AuthValidateTokenReq) (res *auth.AuthValidateTokenRes, err error)
-	CheckPermission(ctx context.Context, req *auth.AuthCheckPermissionReq) (res *auth.AuthCheckPermissionRes, err error)
-	GetUserRoles(ctx context.Context, req *auth.AuthGetUserRolesReq) (res *auth.AuthGetUserRolesRes, err error)
-	GetUserPermissions(ctx context.Context, req *auth.AuthGetUserPermissionsReq) (res *auth.AuthGetUserPermissionsRes, err error)
-	
-	// OAuth and external authentication
-	GoogleAuth(ctx context.Context, req *auth.AuthGoogleAuthReq) (res *auth.AuthGoogleAuthRes, err error)
-	FacebookAuth(ctx context.Context, req *auth.AuthFacebookAuthReq) (res *auth.AuthFacebookAuthRes, err error)
-	
-	// Two-factor authentication
-	EnableTwoFactor(ctx context.Context, req *auth.AuthEnableTwoFactorReq) (res *auth.AuthEnableTwoFactorRes, err error)
-	DisableTwoFactor(ctx context.Context, req *auth.AuthDisableTwoFactorReq) (res *auth.AuthDisableTwoFactorRes, err error)
-	VerifyTwoFactor(ctx context.Context, req *auth.AuthVerifyTwoFactorReq) (res *auth.AuthVerifyTwoFactorRes, err error)
+type IAuthAuth interface {
+	AuthGoogleAuth(ctx context.Context, req *auth.AuthGoogleAuthReq) (res *auth.AuthGoogleAuthRes, err error)
+	AuthFacebookAuth(ctx context.Context, req *auth.AuthFacebookAuthReq) (res *auth.AuthFacebookAuthRes, err error)
+	AuthValidateToken(ctx context.Context, req *auth.AuthValidateTokenReq) (res *auth.AuthValidateTokenRes, err error)
+	AuthCheckPermission(ctx context.Context, req *auth.AuthCheckPermissionReq) (res *auth.AuthCheckPermissionRes, err error)
+	AuthGetUserRoles(ctx context.Context, req *auth.AuthGetUserRolesReq) (res *auth.AuthGetUserRolesRes, err error)
+	AuthGetUserPermissions(ctx context.Context, req *auth.AuthGetUserPermissionsReq) (res *auth.AuthGetUserPermissionsRes, err error)
+	AuthEnableTwoFactor(ctx context.Context, req *auth.AuthEnableTwoFactorReq) (res *auth.AuthEnableTwoFactorRes, err error)
+	AuthDisableTwoFactor(ctx context.Context, req *auth.AuthDisableTwoFactorReq) (res *auth.AuthDisableTwoFactorRes, err error)
+	AuthVerifyTwoFactor(ctx context.Context, req *auth.AuthVerifyTwoFactorReq) (res *auth.AuthVerifyTwoFactorRes, err error)
 }
